@@ -18,10 +18,23 @@ public class Ejecutor {
 		ficheros.add("./datos/salida.txt");
 		
 		ArrayList<HiloEjecutor> listaHilos= new ArrayList<HiloEjecutor>();
-		long tInicioLanzamiento = System.nanoTime();
+		long tInicioCreacion = System.nanoTime();
 		for (String rutaFichero : ficheros) {
-			String[] parametros = {rutaFichero};
-			ContadorPalabras.main(parametros);
+			listaHilos.add(new HiloEjecutor(rutaFichero));
+		}
+		System.out.println("Hilos Creados tardé "+ (float)(System.nanoTime()-tInicioCreacion)/1000000+" ms.");
+		long tInicioLanzamiento = System.nanoTime();
+		for (HiloEjecutor hilo : listaHilos) {
+			hilo.start();
+		}
+		System.out.println("Hilos lanzados. Tardé "+ (float)(System.nanoTime()-tInicioLanzamiento)/1000000+"ms." );
+		for (HiloEjecutor hilo: listaHilos) {
+			try {
+				hilo.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		System.out.println("Hilos finalizados. Tardaron "+(float)(System.nanoTime()-tInicio)/1000000+"ms.");
 	}
