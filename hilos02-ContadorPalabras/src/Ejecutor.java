@@ -16,6 +16,12 @@ public class Ejecutor {
 		ficheros.add("./datos/salida.txt");
 		ficheros.add("./datos/salida.txt");
 		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
 		
 		ArrayList<HiloEjecutor> listaHilos= new ArrayList<HiloEjecutor>();
 		long tInicioCreacion = System.nanoTime();

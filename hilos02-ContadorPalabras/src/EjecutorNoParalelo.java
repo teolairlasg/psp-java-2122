@@ -11,6 +11,12 @@ public class EjecutorNoParalelo {
 		ficheros.add("./datos/salida.txt");
 		ficheros.add("./datos/salida.txt");
 		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
+		ficheros.add("./datos/salida.txt");
 		
 		for (String rutaFichero : ficheros) {
 			String[] parametros = {rutaFichero};
