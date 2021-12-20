@@ -16,6 +16,7 @@ public class Cliente {
 		Thread clienteReceptor = new Thread(
 					new ClienteReceptor(
 							new DataInputStream(socket.getInputStream())));
+		clienteReceptor.start();
 		Scanner teclado = new Scanner(System.in);
 		String linea = teclado.nextLine();
 		DataOutputStream salida = new DataOutputStream(socket.getOutputStream());

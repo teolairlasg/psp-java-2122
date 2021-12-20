@@ -12,9 +12,10 @@ public class ServidorSimultaneo {
 		ColaMensajes colaMensajes = new ColaMensajes();
 		ServerSocket serverSock = new ServerSocket(5454);
 		Thread hiloPropagador = new Thread(new HiloPropagador(clientes, colaMensajes));
+		hiloPropagador.start();
 		while (true) {
 			Socket sock = serverSock.accept();
-			HiloConexion hilo = new HiloConexion(sock);
+			HiloConexion hilo = new HiloConexion(sock, colaMensajes);
 			clientes.add(sock);
 			System.out.println("Cliente conectado!!: "+hilo.getId());
 			hilo.start();

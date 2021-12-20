@@ -4,9 +4,11 @@ import java.net.Socket;
 
 public class HiloConexion extends Thread {
 	Socket socket;
-	public HiloConexion(Socket socket) {
+	ColaMensajes colaMensajes;
+	public HiloConexion(Socket socket, ColaMensajes colaMensajes) {
 		super();
 		this.socket = socket;
+		this.colaMensajes = colaMensajes;
 	}
 	@Override
 	public void run() {
@@ -23,21 +25,27 @@ public class HiloConexion extends Thread {
 			System.err.println("Error obteniendo el stream del socket");
 			e.printStackTrace();
 		}
-		String mensaje = null;
+		String txtMensaje = null;
+		String origMensaje = socket.getInetAddress().toString();
 		try {
-			mensaje = entrada.readUTF();
+			txtMensaje = entrada.readUTF();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while(!mensaje.equals("quit")) {
-			System.out.println("["+socket.getInetAddress()+"]: "+mensaje);
+		while(!txtMensaje.equals("quit")) {
+			Mensaje m = new Mensaje(txtMensaje, origMensaje);
+			System.out.println(m);
+			colaMensajes.anyadirMensaje(txtMensaje, origMensaje);
+			synchronized (colaMensajes) {
+				colaMensajes.notify();
+			}
 			try {
-				mensaje = entrada.readUTF();
+				txtMensaje = entrada.readUTF();
 			} catch (IOException e) {
 				System.err.println("Error en el stream");
 				e.printStackTrace();
-				mensaje = "quit";
+				txtMensaje = "quit";
 			}
 		}
 		System.out.println("El cliente quiere salir");

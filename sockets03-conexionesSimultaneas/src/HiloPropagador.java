@@ -27,6 +27,7 @@ public class HiloPropagador implements Runnable {
 			}
 			Mensaje m = colaMensajes.obtenerMensaje();
 			DataOutputStream salida = null;
+			System.out.println("Propagando...");
 			for (Socket socket : clientes) {
 				try {
 					salida = new DataOutputStream(socket.getOutputStream());
