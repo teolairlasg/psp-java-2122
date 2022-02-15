@@ -74,7 +74,9 @@ public class ClienteSimple {
 				.create();
 		DatosEstacion[] datosAlmudevar = 
 				gson2.fromJson(respuestaDatos.body(), DatosEstacion[].class);
-		System.out.println(datosAlmudevar);
+		for (DatosEstacion datosEstacion : datosAlmudevar) {
+			System.out.println(datosEstacion);
+		}
 	}
 
 }
