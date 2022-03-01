@@ -62,8 +62,7 @@ public class CifradoSimetrico {
 		
 		String textoClaro = new String(textoDesencriptado);
 		System.out.println(textoClaro);
-		
-		
+
 	}
 
 }
