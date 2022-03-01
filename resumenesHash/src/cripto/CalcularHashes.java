@@ -1,4 +1,4 @@
-package resumenesHash;
+package cripto;
 import java.security.MessageDigest;
 import java.util.Base64;
 
@@ -17,7 +17,7 @@ public class CalcularHashes {
 	  public static void main(String[] args) throws Exception {
 
 	      MessageDigest md = MessageDigest.getInstance("SHA-256");
-	      String mensaje = "Hola mundo";
+	      String mensaje = "Hola mundp";
 	      md.update(mensaje.getBytes());
 	      byte[] hash = md.digest();
 
