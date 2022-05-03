@@ -8,14 +8,18 @@ import java.net.Socket;
 import java.util.Properties;
 
 public class Servidor {
-
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	
+	public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException {
+		ContadorConexiones contador = new ContadorConexiones();
 		Properties prop = new Properties();
 		prop.load(new FileReader("./app.properties"));
 		int puerto = Integer.valueOf(prop.getProperty("puerto"));
 		ServerSocket servSock = new ServerSocket(puerto);
-		Socket socket = servSock.accept();
-		System.out.println(socket.getRemoteSocketAddress());
-		socket.close();
+		
+		while(true) {			
+			System.out.println("[Servidor]: Clientes conectados:" + contador.getConexiones());
+			System.out.println("[Servidor]: Esperando conexión...");
+			new Thread(new HiloConexion(servSock.accept(), contador)).start();
+		}
 	}	
 }

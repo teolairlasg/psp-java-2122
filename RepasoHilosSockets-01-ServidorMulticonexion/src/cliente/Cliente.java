@@ -15,6 +15,5 @@ public class Cliente {
 		Socket socket = new Socket(servidor, puerto);
 		System.out.println(socket.getRemoteSocketAddress());
 		socket.close();
-		
 	}
 }
