@@ -2,7 +2,6 @@ package conexionFTP;
 
 import java.io.IOException;
 import java.net.SocketException;
-
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 
