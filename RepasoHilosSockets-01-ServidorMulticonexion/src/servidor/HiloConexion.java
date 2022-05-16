@@ -32,6 +32,10 @@ public class HiloConexion implements Runnable {
 		}
 		contador.decConexiones();
 		System.out.println("[HiloConexion]: Clientes conectados:"+contador.getConexiones());
+		if(contador.getConexiones() >= 10) {
+			System.out.println("[HiloConexion]: Finalizando servidor");
+			Servidor.finalizarPrograma();
+		}
 	}
 
 }
